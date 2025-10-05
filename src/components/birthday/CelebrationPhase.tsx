@@ -5,6 +5,7 @@ import Lights from "./celebration/Lights";
 import Banner from "./celebration/Banner";
 import Balloons from "./celebration/Balloons";
 import Cake from "./celebration/Cake";
+import MemoryFlash from "./celebration/MemoryFlash";
 
 interface CelebrationPhaseProps {
   onShowMessage: () => void;
@@ -16,6 +17,8 @@ const CelebrationPhase = ({ onShowMessage }: CelebrationPhaseProps) => {
   const [showBanner, setShowBanner] = useState(false);
   const [showBalloons, setShowBalloons] = useState(false);
   const [showCake, setShowCake] = useState(false);
+  const [memoryImages, setMemoryImages] = useState<string[]>([]);
+  const [showMemories, setShowMemories] = useState(false);
 
   return (
     <div
@@ -36,7 +39,18 @@ const CelebrationPhase = ({ onShowMessage }: CelebrationPhaseProps) => {
       {showBalloons && <Balloons />}
 
       {/* Cake */}
-      {showCake && <Cake />}
+      {showCake && <Cake onCakeCut={(images) => {
+        setMemoryImages(images);
+        setShowMemories(true);
+      }} />}
+
+      {/* Memory flash */}
+      {showMemories && (
+        <MemoryFlash
+          images={memoryImages}
+          onComplete={() => setShowMemories(false)}
+        />
+      )}
 
       {/* Control buttons */}
       <div className="z-20 flex flex-wrap gap-4 justify-center px-4 mb-8">
