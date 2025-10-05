@@ -58,7 +58,7 @@ const IntroPhase = ({ onContinue }: IntroPhaseProps) => {
           <p
             key={index}
             className={`text-4xl md:text-6xl font-bold text-white mb-8 transition-all duration-1000 ${
-              step === index ? "opacity-100 animate-fade-in" : "opacity-0 absolute"
+              step === index ? "opacity-100 animate-fade-in" : "opacity-0 absolute pointer-events-none"
             }`}
           >
             {message}
